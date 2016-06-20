@@ -1,0 +1,16 @@
+{
+    "elements": {
+        "ng-form": {}
+    },
+    "attributes": {
+        "th:if": {},
+        "layout:decorator": {},
+        "th:src": {},
+        "th:action": {},
+        "sec:authorize": {
+            "context": "a"
+        },
+        "th:replace": {},
+        "layout:fragment": {}
+    }
+}

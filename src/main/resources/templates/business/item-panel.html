@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html layout:decorator="layout">
+    <head>
+        <script th:src="@{/smartshopping/angular/controller/business.controller.js}"></script>
+        <style type="text/css">
+            .page-header {
+                border-bottom: 1px solid #eee;
+                margin: 0px 0px 20px 0px !important;
+                padding-bottom: 9px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+        <div layout:fragment="sidebar">
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+        </div>
+        <div layout:fragment="content" ng-controller="ShopItemController">
+            <div th:replace="fragments/togglenav :: togglenav" />
+            <div th:replace ="fragments/message/validation.error.message :: validationErrorMessage" />
+
+            <div class="page-header">
+                <h3>Add your shop items <small>Add shop items for your business</small></h3>
+            </div>
+
+            <ng-form class="form-horizontal" name="iAddItemForm">
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Item title</label>
+                    <div class="col-sm-5">
+                        <sh-text-field type="text" sh-required="true" id="title"
+                                       sh-placeholder="Enter item title" 
+                                       sh-form="iAddItemForm" sh-field="bTitle" 
+                                       sh-error-messages="titleError"
+                                       ng-model="item.title" name="iTitle"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-5">
+                        <sh-text-area-fileld type="text" sh-required="true" id="description"
+                                             sh-placeholder="Enter decription" 
+                                             sh-form="iAddItemForm" sh-field="iDecription" 
+                                             sh-error-messages="descriptionError"
+                                             ng-model="item.description" name="iDecription"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="offer" class="col-sm-2 control-label">Is offer ?</label>
+                    <div class="col-sm-5">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="remember-me" ng-model="item.offer"/> 
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="price" class="col-sm-2 control-label">Price</label>
+                    <div class="col-sm-5">
+                        <sh-text-field type="number" step="0.01" sh-required="true" id="price"
+                                       sh-placeholder="Enter item price" 
+                                       sh-form="iAddItemForm" sh-field="iPrice" 
+                                       sh-error-messages="priceError"
+                                       ng-model="item.price" name="iPrice"
+                                       ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="offerPrice" class="col-sm-2 control-label">Offer Price</label>
+                    <div class="col-sm-5">
+                        <sh-text-field type="number" step="0.01" sh-required="false" id="offerPrice"
+                                       sh-placeholder="Enter item offer price" 
+                                       sh-form="iAddItemForm" sh-field="iPrice" 
+                                       sh-error-messages="offerPriceError"
+                                       ng-model="item.offerPrice" name="iOfferPrice"
+                                       ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="quantity" class="col-sm-2 control-label">Quantity</label>
+                    <div class="col-sm-5">
+                        <sh-text-field type="number" sh-required="true" id="quantity"
+                                       sh-placeholder="Enter item quantity" 
+                                       sh-form="iAddItemForm" sh-field="iQuantity" 
+                                       sh-error-messages="quantityError"
+                                       ng-model="item.quantity" name="iQuantity"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="category" class="col-sm-2 control-label">Category</label>
+                    <div class="col-sm-5">
+                        <sh-text-field type="text" 
+                                       sh-placeholder="Enter item  category" 
+                                       sh-form="iAddItemForm" sh-field="iCategory" 
+                                       sh-error-messages="categoryError"
+                                       ng-model="item.category" name="iCategory"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="itemImages" class="col-sm-2 control-label">Item images</label>
+                    <div class="col-sm-5">
+                        <sh-file-upload-field type="file" id="itemImages" 
+                                              sh-field="iItemImages" 
+                                              sh-form="iAddItemForm"
+                                              ng-model="item.images"
+                                              formats="jpg,jpeg,png,gif"
+                                              docmaxsize="500"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button type="button" class="btn btn-default" ng-click="businessSignUp(business)">Add item</button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </body>
+</html>

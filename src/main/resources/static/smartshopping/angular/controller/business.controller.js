@@ -70,3 +70,13 @@ shSmartShoppingApp.controller('BusinessSignupController', ['$http', '$scope', '$
         var controller = {};
         return controller;
     }]);
+
+shSmartShoppingApp.controller('ShopItemController', ['$http', '$scope', '$rootScope', '$controller', function ShopItemController($http, $scope, $rootScope, $controller) {
+        $controller('CoreController', {
+            $scope: $scope
+        });
+
+        
+        var controller = {};
+        return controller;
+    }]);

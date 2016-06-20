@@ -1,6 +1,9 @@
 package org.smart.shoping.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class SmartShopingAppController {
@@ -16,4 +19,10 @@ public class SmartShopingAppController {
 	{
 		return "index";
 	}*/
+    @RequestMapping(value="/business-item-panel/{id}")
+    public String businessItemPanelInit(Model model, @PathVariable("id") Long id){
+        model.addAttribute("businessId", id);
+        
+        return "business/item-panel";
+    }
 }
