@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+  <head>
+  
+  </head>
+  <body>
+    <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+    <div layout:fragment="sidebar">
+    	<div th:replace="fragments/sidebar :: sidebar">
+    	</div>
+    </div>
+    <div layout:fragment="content">
+    	<div th:replace="fragments/togglenav :: togglenav" />
+    	<div th:replace="fragments/features_items :: features_items" />
+        <div th:replace="fragments/items :: items" /> 
+      index
+    </div>
+  </body>
+</html>

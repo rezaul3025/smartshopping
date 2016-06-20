@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+<head>
+
+<script
+	th:src="@{/smartshopping/angular/controller/business.controller.js}"></script>
+<style type="text/css">
+.page-header {
+	border-bottom: 1px solid #eee;
+	margin: 0px 0px 20px 0px !important;
+	padding-bottom: 9px;
+}
+
+table td {
+	padding: 5px;
+}
+</style>
+</head>
+<body>
+	<!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+	<div layout:fragment="sidebar">
+		<div th:replace="fragments/sidebar :: sidebar"></div>
+	</div>
+	<div layout:fragment="content" ng-controller="BusinessSignupController"
+		ng-init="getAllBusiness()">
+		<div th:replace="fragments/togglenav :: togglenav" />
+		<div th:replace="fragments/message/validation.error.message :: validationErrorMessage" />
+
+		<div class="row">
+  			<div class="col-xs-12 col-md-12">
+  				<div class="jumbotron">
+  					<div class="input-group">
+   					 		<span class="input-group-addon" id="basic-addon3"><span class="glyphicon glyphicon-search"></span></span>
+      						<input type="text" class="form-control"
+								placeholder="Search for shop/company"/>
+      						<span class="input-group-btn">
+        					<button class="btn btn-primary" type="button">Search</button>
+      					</span>
+   				 	</div>
+   				 	<sh-search-field  sh-required="true"
+										sh-placeholder="Select title" 
+										sh-form="searchForm" sh-field="searchTitle" 
+										 sh-error-messages="searchError"
+										ng-model="business.search" name="searchTitle"/>
+										
+				</div>
+				<!-- /input-group -->
+  			</div>
+			<!-- /.col-lg-6 -->
+		</div>
+		<!-- /.row -->
+		<h3><span class="glyphicon glyphicon-th-list"></span>  Shop/company list</h3>
+		<div class="row"> 
+			<div class="col-xs-12 col-md-12">
+			<div ng-repeat="business in businessAll">
+				<div class="media">
+					<div class="">
+						
+					</div>
+					<div class="media-body">
+						
+					</div>
+				</div>
+				<table class="table">
+					<tr>
+						<td valign="top" style="width: 175px; height: 105px;">
+							<a href="#" ng-if="business.businessImageMeta[0].webPath.length"> <img
+									class="media-object" style="width: 170px; height: 100px;"
+									alt="business logo"
+									ng-src="{{business.businessImageMeta[0].webPath}}" />
+							</a>
+						</td>
+						<td valign="top">
+							<h4 class="media-heading">{{business.title}}</h4>
+							{{business.location}} | floor No. {{business.floorNo}} | shop no. {{business.shopNo}} | {{business.streetNameAndNo}} | {{business.postCode}} {{business.city}}
+						</td>
+					</tr>
+				</table>
+			</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

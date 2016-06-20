@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="a"/>
+    <meta name="author" content="a"/>
+	<!--     <link rel="icon" href="../../favicon.ico"> -->
+
+    <!-- <title>Off Canvas Template for Bootstrap</title> -->
+
+    <!-- Bootstrap core CSS -->
+    <!-- Each token will be replaced by their respective titles in the resulting page. href="../../css/thvsjsp.css" -->
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Task List</title>
+    <!--  meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /-->
+    <!-- <link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/externallib/metro-ui-css-3.0/css/metro.min.css}"/> -->
+      <!-- <link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/externallib/metro-ui-css-3.0/css/metro-schemes.min.css}"/> -->
+       
+    <link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/externallib/bootstrap-3.3.6-dist/css/bootstrap.min.css}"/>
+      <link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/externallib/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css}"/>
+      <link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/externallib/metro-ui-css-3.0/css/metro-bootstrap.css}"/>
+      
+      <link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/externallib/select2-4.0.1/dist/css/select2.css}"/>
+      <link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/externallib/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css}"/>
+      <script th:src="@{/externallib/jquery/jquery-1.11.3.min.js}"></script>
+      <script th:src="@{/externallib/angularjs/angular.min.js}"></script>  
+      <script th:src="@{/externallib/angularjs/ui-utils.js}"></script> 
+      <script th:src="@{/externallib/angularjs/angular-messages.min.js}"></script>
+      <!-- <script th:src="@{/externallib/angularjs/angular-route.min.js}"></script> -->
+      <script th:src="@{/externallib/select2-4.0.1/dist/js/select2.full.js}"></script>
+     <!--  <script th:src="@{/externallib/hrms/angular/hrms.directive.js}"></script> -->
+     <script th:src="@{/smartshopping/utils/UtilsService.js}"></script>
+     <script th:src="@{/smartshopping/service/ServiceConfig.js}"></script>
+     <script th:src="@{/smartshopping/angular/components.js}"></script>
+      <script th:src="@{/smartshopping/utils/utils.js}"></script>
+     
+     <style type="text/css">
+     	/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+body {
+  padding-top: 70px;
+}
+footer {
+  padding: 30px 0;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 50%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+  }
+}
+
+.popover.bottom > .arrow::after {
+    border-bottom-color: #9a1616  !important;
+    border-top-width: 0;
+    content: " ";
+    margin-left: -10px;
+    top: 1px;
+}
+.popover {
+	background-color: #9a1616 !important;
+	color: white;
+}
+     	
+     </style>
+  </head>
+
+  <body ng-app="SmartShoppingApp">
+    <nav class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">SMART SHOPING WEB</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li ><a th:href="@{/business/list}">Company/shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+					<li><a href="/signin" th:href="@{/signin}">Sign in</a></li>
+					<li>
+						<a href="/logout" th:href="@{/logout}">Logout</a>
+						<!-- <form th:action="@{/logout}" method="post">
+							<input type="submit" value="Sign Out" /> <a type="submit">Logout</a>
+						</form> -->
+					</li>
+				</ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+         <div layout:fragment="content">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Hello, world!</h1>
+            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+          </div><!--/row-->
+          </div>
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+        	<div layout:fragment="sidebar">
+          		<div class="list-group">
+		            <a href="#" class="list-group-item active">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+		            <a href="#" class="list-group-item">Link</a>
+          		</div>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+
+      <hr/>
+
+      <footer>
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script th:src="@{/externallib/bootstrap-3.3.6-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/externallib/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js}"></script>
+    <script type="text/javascript">
+    $('.dateOfBirth').datepicker({})
+    </script>
+  </body>
+</html>
