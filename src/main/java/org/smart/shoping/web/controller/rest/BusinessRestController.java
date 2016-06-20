@@ -19,46 +19,29 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @RestController
 @RequestMapping("/rest/business")
 public class BusinessRestController {
-	
-	@Autowired
-	private BusinessService businessService;
-	
-	//@Autowired
-	//private LongRunningService longRunningService;
-	
-	//final  ExecutorService executor = Executors.newSingleThreadExecutor();
-	
-	@RequestMapping(value="/all")
-	public List<Business> getAll()
-	{
-		//Pageable page = new Pageable();
-		return businessService.getAll(new PageRequest(0,10, Sort.Direction.DESC, "title")).getContent();
-	}
-	
-	@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public Long signUp(@RequestBody Business business)
-	{
-		//executor.execute(longRunningService);
-		return businessService.addBusiness(business).getId();		
-	}
-	
-	@RequestMapping(value="/signup/image/{id}", method=RequestMethod.POST)
-	public void businessImageUploadWithSignup(MultipartHttpServletRequest request, @PathVariable("id") Long businessId)
-	{
-		businessService.imageUpload(request, businessId);
-	}
-	
-	@RequestMapping(value="/image/{id}", method=RequestMethod.GET)
-	public List<BusinessImageMeta> getBusinessImage(@PathVariable("id") Long id){
-		//executor.shutdown();
-		//executor.shutdownNow();
-		return businessService.getImageByBusiness(id);
-	}
-	
-	@RequestMapping(value="/name", method=RequestMethod.GET)
-	public List<Business> getBissinessTitle(@RequestParam("query") String searchTerm)
-	{
-		return businessService.getAll(new PageRequest(0, 10, Sort.Direction.DESC, "title")).getContent();//.stream().map(Business :: getTitle).collect(Collectors.toList());
-	}
+
+    @Autowired
+    private BusinessService businessService;
+
+    //@Autowired
+    //private LongRunningService longRunningService;
+    //final  ExecutorService executor = Executors.newSingleThreadExecutor();
+    @RequestMapping(value = "/all")
+    public List<Business> getAll() {
+        //Pageable page = new Pageable();
+        return businessService.getAll(new PageRequest(0, 10, Sort.Direction.DESC, "title")).getContent();
+    }
+
+    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
+    public List<BusinessImageMeta> getBusinessImage(@PathVariable("id") Long id) {
+        //executor.shutdown();
+        //executor.shutdownNow();
+        return businessService.getImageByBusiness(id);
+    }
+
+    @RequestMapping(value = "/name", method = RequestMethod.GET)
+    public List<Business> getBissinessTitle(@RequestParam("query") String searchTerm) {
+        return businessService.getAll(new PageRequest(0, 10, Sort.Direction.DESC, "title")).getContent();//.stream().map(Business :: getTitle).collect(Collectors.toList());
+    }
 
 }

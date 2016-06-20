@@ -12,189 +12,188 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity(name="business")
+@Entity(name = "business")
 public class Business implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id",length=Integer.MAX_VALUE,nullable=false)
-	private Long id;
-	
-	@Column(name="title", length=255, nullable=false)
-	private String title;
-	
-	@Column(name="sub_title", length=255, nullable=true)
-	private String subTitle;
-	
-	@Column(name="description", length=Integer.MAX_VALUE, nullable=false)
-	private String description;
-	
-	@Column(name="street_name_no", length=126, nullable=false)
-	private String streetNameAndNo;
-	
-	@Column(name="location", length=255, nullable=true)
-	private String location;
-	
-	@Column(name="floor_no", length=3, nullable=true)
-	private Integer floorNo;
-	
-	@Column(name="shop_no", length=6, nullable=true)
-	private Integer shopNo;
-	
-	@Column(name="post_code", length=10, nullable=true)
-	private Integer postCode;
-	
-	@Column(name="city", length=80, nullable=false)
-	private String city;
-	
-	@Column(name="country", length=100 , nullable=false)
-	private String country;
-	
-	@Column(name="email", length=100, nullable=false)
-	private String email;
-	
-	@Column(name="phone", length=50, nullable=false)
-	private String phone;
-	
-	@Column(name="password", length=20, nullable=false)
-	private String password;
-	
-	@OneToMany(mappedBy="business")
-	@JsonManagedReference
-	private List<BusinessImageMeta> businessImageMeta;
-	
-	public Business(){
-		
-	}
-	
-	public Business(Long id){
-		this.id = id;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", length = Integer.MAX_VALUE, nullable = false)
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "title", length = 255, nullable = false)
+    private String title;
 
-	public String getTitle() {
-		return title;
-	}
+    @Column(name = "sub_title", length = 255, nullable = true)
+    private String subTitle;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    @Column(name = "description", length = Integer.MAX_VALUE, nullable = false)
+    private String description;
 
-	public String getSubTitle() {
-		return subTitle;
-	}
+    @Column(name = "street_name_no", length = 126, nullable = false)
+    private String streetNameAndNo;
 
-	public void setSubTitle(String subTitle) {
-		this.subTitle = subTitle;
-	}
+    @Column(name = "location", length = 255, nullable = true)
+    private String location;
 
-	public String getDescription() {
-		return description;
-	}
+    @Column(name = "floor_no", length = 3, nullable = true)
+    private Integer floorNo;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    @Column(name = "shop_no", length = 6, nullable = true)
+    private Integer shopNo;
 
-	public String getLocation() {
-		return location;
-	}
+    @Column(name = "post_code", length = 10, nullable = true)
+    private Integer postCode;
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    @Column(name = "city", length = 80, nullable = false)
+    private String city;
 
-	public String getStreetNameAndNo() {
-		return streetNameAndNo;
-	}
+    @Column(name = "country", length = 100, nullable = false)
+    private String country;
 
-	public void setStreetNameAndNo(String streetNameAndNo) {
-		this.streetNameAndNo = streetNameAndNo;
-	}
+    @Column(name = "email", length = 100, nullable = false)
+    private String email;
 
-	public Integer getFloorNo() {
-		return floorNo;
-	}
+    @Column(name = "phone", length = 50, nullable = false)
+    private String phone;
 
-	public void setFloorNo(Integer floorNo) {
-		this.floorNo = floorNo;
-	}
+    @Column(name = "password", length = 20, nullable = false)
+    private String password;
 
-	public Integer getShopNo() {
-		return shopNo;
-	}
+    @OneToMany(mappedBy = "business")
+    @JsonManagedReference
+    private List<BusinessImageMeta> businessImageMeta;
 
-	public void setShopNo(Integer shopNo) {
-		this.shopNo = shopNo;
-	}
+    public Business() {
 
-	public Integer getPostCode() {
-		return postCode;
-	}
+    }
 
-	public void setPostCode(Integer postCode) {
-		this.postCode = postCode;
-	}
+    public Business(Long id) {
+        this.id = id;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getSubTitle() {
+        return subTitle;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public List<BusinessImageMeta> getBusinessImageMeta() {
-		return businessImageMeta;
-	}
+    public String getStreetNameAndNo() {
+        return streetNameAndNo;
+    }
 
-	public void setBusinessImageMeta(List<BusinessImageMeta> businessImageMeta) {
-		this.businessImageMeta = businessImageMeta;
-	}
-	
+    public void setStreetNameAndNo(String streetNameAndNo) {
+        this.streetNameAndNo = streetNameAndNo;
+    }
+
+    public Integer getFloorNo() {
+        return floorNo;
+    }
+
+    public void setFloorNo(Integer floorNo) {
+        this.floorNo = floorNo;
+    }
+
+    public Integer getShopNo() {
+        return shopNo;
+    }
+
+    public void setShopNo(Integer shopNo) {
+        this.shopNo = shopNo;
+    }
+
+    public Integer getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(Integer postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<BusinessImageMeta> getBusinessImageMeta() {
+        return businessImageMeta;
+    }
+
+    public void setBusinessImageMeta(List<BusinessImageMeta> businessImageMeta) {
+        this.businessImageMeta = businessImageMeta;
+    }
 
 }
