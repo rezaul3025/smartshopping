@@ -2,7 +2,6 @@ package org.smart.shoping.core.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +11,7 @@ public class User {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name", length = 255, nullable = false)
@@ -31,9 +30,10 @@ public class User {
 
     }
 
-    public User(String name, String email, String password, Role role) {
+    public User(Long id, String name, String email, String password, Role role) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = hashedPassword;

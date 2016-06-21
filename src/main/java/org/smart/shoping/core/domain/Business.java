@@ -196,4 +196,8 @@ public class Business implements Serializable {
         this.businessImageMeta = businessImageMeta;
     }
 
+    @Override
+    public String toString(){
+        return "id:"+id+",title:"+title+",email:"+email+",pass:"+password;
+    }
 }

@@ -76,7 +76,15 @@ shSmartShoppingApp.controller('ShopItemController', ['$http', '$scope', '$rootSc
             $scope: $scope
         });
 
-        
+        //Model init value
+        $scope.item = {title: '',
+            description: '',
+            offer: false,
+            price: 0.00,
+            offerPrice: 0.00,
+            quantity: 0
+        }
+
         var controller = {};
         return controller;
     }]);

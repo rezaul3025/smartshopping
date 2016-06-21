@@ -76,8 +76,7 @@ and open the template in the editor.
                     <div class="col-sm-5">
                         <sh-text-field type="number" step="0.01" sh-required="false" id="offerPrice"
                                        sh-placeholder="Enter item offer price" 
-                                       sh-form="iAddItemForm" sh-field="iPrice" 
-                                       sh-error-messages="offerPriceError"
+                                       sh-form="iAddItemForm" sh-field="iOfferPrice" 
                                        ng-model="item.offerPrice" name="iOfferPrice"
                                        ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" />
                     </div>
@@ -110,7 +109,8 @@ and open the template in the editor.
                                               sh-form="iAddItemForm"
                                               ng-model="item.images"
                                               formats="jpg,jpeg,png,gif"
-                                              docmaxsize="500"/>
+                                              docmaxsize="500"
+                                              multiple=""/>
                     </div>
                 </div>
                 <div class="form-group">

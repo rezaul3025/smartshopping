@@ -51,8 +51,10 @@ public class BusinessServiceHandlar implements BusinessService {
 
     @Override
     public Business addBusiness(Business business) {
-        userRepository.save(new User(business.getTitle(), business.getEmail(), business.getPassword(), Role.BUSINESS));
-        return businessRepo.save(business);
+        business = businessRepo.save(business);
+        System.out.println("Business deatils : @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ :"+business);
+        userRepository.save(new User(business.getId(), business.getTitle(), business.getEmail(), business.getPassword(), Role.BUSINESS));
+        return business;
     }
 
     @Override
