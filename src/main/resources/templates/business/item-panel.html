@@ -20,7 +20,7 @@ and open the template in the editor.
         <div layout:fragment="sidebar">
             <div th:replace="fragments/sidebar :: sidebar"></div>
         </div>
-        <div layout:fragment="content" ng-controller="ShopItemController">
+        <div layout:fragment="content" ng-controller="ShopItemController" th:attr="ng-init='init('+${businessId}+')'" >
             <div th:replace="fragments/togglenav :: togglenav" />
             <div th:replace ="fragments/message/validation.error.message :: validationErrorMessage" />
 
@@ -115,7 +115,7 @@ and open the template in the editor.
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-5">
-                        <button type="button" class="btn btn-default" ng-click="businessSignUp(business)">Add item</button>
+                        <button type="button" class="btn btn-default" ng-click="addItem(item)">Add item</button>
                     </div>
                 </div>
             </ng-form>

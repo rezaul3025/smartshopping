@@ -75,6 +75,10 @@ shSmartShoppingApp.controller('ShopItemController', ['$http', '$scope', '$rootSc
         $controller('CoreController', {
             $scope: $scope
         });
+        
+        $scope.init = function(businessId){
+            $scope.businessId = businessId;
+        }
 
         //Model init value
         $scope.item = {title: '',
@@ -84,6 +88,48 @@ shSmartShoppingApp.controller('ShopItemController', ['$http', '$scope', '$rootSc
             offerPrice: 0.00,
             quantity: 0
         }
+
+        $scope.addItem = function (item) {
+
+            var url = "/rest/business/item/" + $scope.businessId;
+
+            $http({
+                method: 'POST',
+                url: url,
+                data: item
+                        /*transformRequest: angular.identity,
+                         headers: {'Content-Type': undefined, 'Content-Transfer-Encoding': 'utf-8'}*/
+            }).
+                    success(function (data, status, headers, config) {
+
+                        if (data != null && typeof data != 'undefined') {
+                            var itemId = data.id;
+                            var imgUpUrl = '/rest/business/item/image/' + itemId;
+                            var formData = new FormData();
+                            for (var i = 0; i < item.images.length; i++) {
+                                formData.append('item_image' + i, item.images[i]);
+                            }
+                            $http({
+                                method: 'POST',
+                                url: imgUpUrl,
+                                data: formData,
+                                transformRequest: angular.identity,
+                                headers: {'Content-Type': undefined, 'Content-Transfer-Encoding': 'utf-8'}
+                            }).
+                                    success(function (data, status, headers, config) {
+                                       // $scope.getBusinessImage(businessId);
+                                    })
+                                    .error(function (data, status, headers, config) {
+
+                                    })
+                        }
+
+                    })
+                    .error(function (data, status, headers, config) {
+
+                    })
+
+        };
 
         var controller = {};
         return controller;

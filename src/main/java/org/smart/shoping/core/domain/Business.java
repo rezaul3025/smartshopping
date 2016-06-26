@@ -66,7 +66,12 @@ public class Business implements Serializable {
 
     @OneToMany(mappedBy = "business")
     @JsonManagedReference
+    private List<Item> items;
+    
+    @OneToMany(mappedBy = "business")
+    @JsonManagedReference
     private List<BusinessImageMeta> businessImageMeta;
+    
 
     public Business() {
 
@@ -190,6 +195,14 @@ public class Business implements Serializable {
 
     public List<BusinessImageMeta> getBusinessImageMeta() {
         return businessImageMeta;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public void setBusinessImageMeta(List<BusinessImageMeta> businessImageMeta) {

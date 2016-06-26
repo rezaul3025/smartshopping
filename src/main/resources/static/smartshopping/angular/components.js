@@ -51,13 +51,13 @@ shSmartShoppingApp.directive('shText', function () {
                 return value != "" && value != undefined && value != null;
             };
             
-            ngModel.$validators.pattern = function (value) {
+            /* ngModel.$validators.pattern = function (value) {
                 if (!attrs.pattern == 'undefined') {
                     return true;
                 }
                 var test = attrs.pattern.test(value);
                 return attrs.pattern.test(value);
-            };
+            };*/
         }
     };
 });

@@ -1,5 +1,6 @@
 package org.smart.shoping.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "item")
 public class Item implements Serializable {
@@ -49,10 +52,23 @@ public class Item implements Serializable {
 
     @Column(name = "category", length = 255, nullable = false)
     private Category category;
+    
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "owner_id" , nullable = false,unique = false)
+    private Business business;
 
     @OneToMany(mappedBy = "item")
     @JsonManagedReference
     private Set<ItemImageMeta> itemImageMeta;
+    
+    public Item(){
+        
+    }
+    
+    public Item(Long id){
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
@@ -136,5 +152,13 @@ public class Item implements Serializable {
 
     public static long getSerialversionuid() {
         return serialVersionUID;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
     }
 }

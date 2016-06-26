@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.smart.shoping.core.domain.Business;
 import org.smart.shoping.core.domain.BusinessImageMeta;
+import org.smart.shoping.core.domain.Item;
 import org.smart.shoping.persistence.services.BusinessService;
+import org.smart.shoping.persistence.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,9 @@ public class BusinessRestController {
 
     @Autowired
     private BusinessService businessService;
+    
+    @Autowired
+    private ItemService itemService;
 
     //@Autowired
     //private LongRunningService longRunningService;
@@ -44,4 +49,13 @@ public class BusinessRestController {
         return businessService.getAll(new PageRequest(0, 10, Sort.Direction.DESC, "title")).getContent();//.stream().map(Business :: getTitle).collect(Collectors.toList());
     }
 
+    @RequestMapping(value = "/item/{businessId}", method = RequestMethod.POST)
+    public Item addItem(@RequestBody Item item, @PathVariable("businessId") Long businessId){
+        return itemService.addShopingItem(item, businessId);
+    }
+    
+    @RequestMapping(value = "/item/image/{id}", method = RequestMethod.POST)
+    public void businessImageUploadWithSignup(MultipartHttpServletRequest request, @PathVariable("id") Long itemId) {
+        itemService.addItemImage(request, itemId);
+    }
 }
