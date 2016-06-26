@@ -10,20 +10,18 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
 import org.smart.shoping.core.domain.Business;
-import org.smart.shoping.core.domain.BusinessImageMeta;
 import org.smart.shoping.core.domain.Item;
 import org.smart.shoping.core.domain.ItemImageMeta;
 import org.smart.shoping.persistence.repositories.BusinessRepository;
+import org.smart.shoping.persistence.repositories.ItemImageMetaRepository;
 import org.smart.shoping.persistence.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -48,6 +46,9 @@ public class ItemServiceHandler implements ItemService {
     
     @Autowired
     private BusinessRepository businessRepo;
+    
+    @Autowired
+    private ItemImageMetaRepository itemImageMetaRepository;
 
     @Autowired
     private Environment env;
@@ -107,15 +108,15 @@ public class ItemServiceHandler implements ItemService {
                     }
 
                     ItemImageMeta imageMeta = new ItemImageMeta(null, item, webPath, originalPath, IMAGE_TYPE_ITEM, height, width, file.getSize(), mimeType, filename);
-                    //DocumentMetadata docMeta = new DocumentMetadata(null, docOwnerId, filename, mimeType,savePath,webPath,file.getSize(),width,height, getDocIcon(mimeType));
-                    itemImageMetaList.add(imageMeta);
+                   
+                    itemImageMetaRepository.save(imageMeta);
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
-        item.setItemImageMeta(itemImageMetaList);
-        itemRepository.save(item);
+        //item.setItemImageMeta(itemImageMetaList);
+        //itemRepository.save(item);
     }
 }

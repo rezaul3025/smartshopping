@@ -75,9 +75,17 @@ shSmartShoppingApp.controller('ShopItemController', ['$http', '$scope', '$rootSc
         $controller('CoreController', {
             $scope: $scope
         });
-        
-        $scope.init = function(businessId){
+
+        $scope.init = function (businessId) {
             $scope.businessId = businessId;
+            
+            var getGategoryUrl = "/rest/business/item/category";
+            $http.get(getGategoryUrl).success(function (data, status, headers) {
+                $scope.categories = data;
+                $scope.item.category = $scope.categories[0];
+            }).error(function (data, status, headers) {
+
+            })
         }
 
         //Model init value
@@ -117,7 +125,7 @@ shSmartShoppingApp.controller('ShopItemController', ['$http', '$scope', '$rootSc
                                 headers: {'Content-Type': undefined, 'Content-Transfer-Encoding': 'utf-8'}
                             }).
                                     success(function (data, status, headers, config) {
-                                       // $scope.getBusinessImage(businessId);
+                                        // $scope.getBusinessImage(businessId);
                                     })
                                     .error(function (data, status, headers, config) {
 

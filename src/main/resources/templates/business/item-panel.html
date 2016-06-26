@@ -94,11 +94,14 @@ and open the template in the editor.
                 <div class="form-group">
                     <label for="category" class="col-sm-2 control-label">Category</label>
                     <div class="col-sm-5">
-                        <sh-text-field type="text" 
+                        <!--sh-text-field type="text" 
                                        sh-placeholder="Enter item  category" 
                                        sh-form="iAddItemForm" sh-field="iCategory" 
                                        sh-error-messages="categoryError"
-                                       ng-model="item.category" name="iCategory"/>
+                                       ng-model="item.category" name="iCategory"/-->
+                        <select class="form-control" ng-init="item.category = categories[0]"
+                                ng-options="category as category for category in categories" 
+                                ng-model="item.category"></select>
                     </div>
                 </div>
                 <div class="form-group">
