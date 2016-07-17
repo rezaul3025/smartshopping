@@ -1,15 +1,12 @@
 package org.smart.shoping.web.controller.rest;
 
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Set;
 
 import org.smart.shoping.core.domain.Business;
 import org.smart.shoping.core.domain.BusinessImageMeta;
 import org.smart.shoping.core.domain.Category;
 import org.smart.shoping.core.domain.Item;
-import org.smart.shoping.core.domain.Role;
 import org.smart.shoping.persistence.services.BusinessService;
 import org.smart.shoping.persistence.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;

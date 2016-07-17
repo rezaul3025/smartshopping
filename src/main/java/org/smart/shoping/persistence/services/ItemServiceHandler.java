@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import javax.imageio.ImageIO;
@@ -23,8 +24,13 @@ import org.smart.shoping.core.domain.ItemImageMeta;
 import org.smart.shoping.persistence.repositories.BusinessRepository;
 import org.smart.shoping.persistence.repositories.ItemImageMetaRepository;
 import org.smart.shoping.persistence.repositories.ItemRepository;
+import org.smart.shoping.web.domain.ItemInfoList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -118,5 +124,20 @@ public class ItemServiceHandler implements ItemService {
         }
         //item.setItemImageMeta(itemImageMetaList);
         //itemRepository.save(item);
+    }
+
+    @Override
+    public ItemInfoList getAll(int page, int pageSize) {
+        
+        Pageable pageRequest = createPageRequest(page, pageSize);
+                
+        Page<Item> items = itemRepository.findAll(pageRequest);
+        
+        return new ItemInfoList(items.getContent(),items.getTotalElements());
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private Pageable createPageRequest(int page, int pageSize) {
+        return new PageRequest(page, pageSize, Sort.Direction.ASC, "createdDate");
     }
 }

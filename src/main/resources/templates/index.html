@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html layout:decorator="layout">
   <head>
-  
+      <script th:src="@{/smartshopping/angular/controller/item.controller.js}"></script>
+        <style type="text/css">
+            .page-header {
+                border-bottom: 1px solid #eee;
+                margin: 0px 0px 20px 0px !important;
+                padding-bottom: 9px;
+            }
+        </style>
   </head>
   <body>
     <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
@@ -9,7 +16,7 @@
     	<div th:replace="fragments/sidebar :: sidebar">
     	</div>
     </div>
-    <div layout:fragment="content">
+    <div layout:fragment="content" ng-controller="ItemController" ng-init="fetchItems(0,10)">
     	<div th:replace="fragments/togglenav :: togglenav" />
     	<div th:replace="fragments/features_items :: features_items" />
         <div th:replace="fragments/items :: items" /> 
