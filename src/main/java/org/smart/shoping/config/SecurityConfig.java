@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/externallib/**", "/smartshopping/**", "/", "/signup","/rest/signup/**","/rest/item/**").permitAll()
+                .antMatchers("/externallib/**", "/smartshopping/**", "/", "/signup","/rest/signup/**","/rest/item/**","/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
