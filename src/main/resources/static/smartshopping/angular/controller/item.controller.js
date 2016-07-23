@@ -11,7 +11,7 @@ shSmartShoppingApp.controller('ItemController', ['$http', '$scope', '$rootScope'
         $scope.fetchItems = function (page, pageSize) {
             var getImgUrl = "rest/item/all?page=" + page+"&pageSize="+pageSize;
             $http.get(getImgUrl).success(function (data, status, headers) {
-                $scope.items = data.content;
+                $scope.items = data;
             }).error(function (data, status, headers) {
 
             })
