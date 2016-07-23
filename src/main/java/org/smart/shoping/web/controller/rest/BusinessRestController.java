@@ -62,7 +62,7 @@ public class BusinessRestController {
     }
     
     @RequestMapping(value = "/item/category", method = RequestMethod.GET)
-    public List<Category> getCategory(){
-        return Arrays.asList(Category.values());
+    public List<String> getCategory(){
+        return itemService.getItemCategory();
     }
 }

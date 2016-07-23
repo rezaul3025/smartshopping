@@ -23,8 +23,10 @@ import javax.transaction.Transactional;
 import org.smart.shoping.core.domain.Business;
 import org.smart.shoping.core.domain.Category;
 import org.smart.shoping.core.domain.Item;
+import org.smart.shoping.core.domain.ItemCategory;
 import org.smart.shoping.core.domain.ItemImageMeta;
 import org.smart.shoping.persistence.repositories.BusinessRepository;
+import org.smart.shoping.persistence.repositories.ItemCategoryRepository;
 import org.smart.shoping.persistence.repositories.ItemImageMetaRepository;
 import org.smart.shoping.persistence.repositories.ItemRepository;
 import org.smart.shoping.web.domain.ItemInfo;
@@ -58,6 +60,9 @@ public class ItemServiceHandler implements ItemService {
     
     @Autowired
     private ItemImageMetaRepository itemImageMetaRepository;
+    
+    @Autowired
+    private ItemCategoryRepository itemCategoryRepository;
 
     @Autowired
     private Environment env;
@@ -128,13 +133,29 @@ public class ItemServiceHandler implements ItemService {
         //item.setItemImageMeta(itemImageMetaList);
         //itemRepository.save(item);
     }
+    
+    @Override
+    public List<String> getItemCategory(){
+        List<String> categoryList = new ArrayList<String>();
+        
+        for(ItemCategory category :itemCategoryRepository.findAll()){
+            categoryList.add(category.getName());
+        }
+            
+        return categoryList;
+    }
 
     @Override
     public List<ItemInfo> getItemByCategory(int page, int pageSize) {
-        
+      
         List<ItemInfo> itemInfoList = new ArrayList<ItemInfo>();
         
         Pageable pageRequest = createPageRequest(page, pageSize);
+        
+        Business b = new Business();
+        b.setId(1L);
+        Page<Item> items1 = itemRepository.findByBusiness(b,pageRequest);
+        
         
         List<Category> categoryList = Arrays.asList(Category.values());
         

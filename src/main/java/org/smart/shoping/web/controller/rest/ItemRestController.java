@@ -29,4 +29,9 @@ public class ItemRestController {
     public List<ItemInfo> getAllItem(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize){
         return itemService.getItemByCategory(page, pageSize);
     }
+    
+    @RequestMapping(value="/category/names", method = RequestMethod.GET)
+    public List<String> getItemCategoryNames(){
+        return itemService.getItemCategory();
+    }
 }
