@@ -5,7 +5,10 @@
  */
 package org.smart.shoping.persistence.repositories;
 
+import org.smart.shoping.core.domain.Category;
 import org.smart.shoping.core.domain.Item;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +18,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long>{
-    
+    Page<Item> findByCategory(Category catogory, Pageable pageRequest);
 }

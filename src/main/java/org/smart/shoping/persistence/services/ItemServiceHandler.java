@@ -10,6 +10,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,12 +21,13 @@ import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
 import org.smart.shoping.core.domain.Business;
+import org.smart.shoping.core.domain.Category;
 import org.smart.shoping.core.domain.Item;
 import org.smart.shoping.core.domain.ItemImageMeta;
 import org.smart.shoping.persistence.repositories.BusinessRepository;
 import org.smart.shoping.persistence.repositories.ItemImageMetaRepository;
 import org.smart.shoping.persistence.repositories.ItemRepository;
-import org.smart.shoping.web.domain.ItemInfoList;
+import org.smart.shoping.web.domain.ItemInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
@@ -127,13 +130,20 @@ public class ItemServiceHandler implements ItemService {
     }
 
     @Override
-    public ItemInfoList getAll(int page, int pageSize) {
+    public List<ItemInfo> getItemByCategory(int page, int pageSize) {
+        
+        List<ItemInfo> itemInfoList = new ArrayList<ItemInfo>();
         
         Pageable pageRequest = createPageRequest(page, pageSize);
-                
-        Page<Item> items = itemRepository.findAll(pageRequest);
         
-        return new ItemInfoList(items.getContent(),items.getTotalElements());
+        List<Category> categoryList = Arrays.asList(Category.values());
+        
+        for(Category category : categoryList){
+            Page<Item> items = itemRepository.findByCategory(category, pageRequest);
+            itemInfoList.add(new ItemInfo(category,items.getContent(),items.getTotalElements()));
+        }
+        
+        return  itemInfoList;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

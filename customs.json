@@ -1,6 +1,7 @@
 {
     "elements": {
-        "ng-form": {}
+        "ng-form": {},
+        "sh-item-thum-div": {}
     },
     "attributes": {
         "th:if": {},
@@ -11,6 +12,9 @@
             "context": "a"
         },
         "th:replace": {},
+        "th:fragment": {
+            "context": "div"
+        },
         "layout:fragment": {}
     }
 }
