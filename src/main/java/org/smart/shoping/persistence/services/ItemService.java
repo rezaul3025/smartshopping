@@ -26,4 +26,6 @@ public interface ItemService {
     
     List<ItemInfo> getItemByCategory(int page, int pageSize);
     
+    Item getItemDetails(Long id);
+    
 }

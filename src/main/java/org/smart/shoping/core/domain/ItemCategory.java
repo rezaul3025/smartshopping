@@ -5,6 +5,7 @@
  */
 package org.smart.shoping.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
@@ -31,7 +32,8 @@ public class ItemCategory implements Serializable{
     private String imageIcon;
     
     @OneToMany(mappedBy = "itemCategory")
-    @JsonManagedReference
+   // @JsonManagedReference
+    @JsonBackReference
     private List<Item> items;
 
     public Integer getId() {

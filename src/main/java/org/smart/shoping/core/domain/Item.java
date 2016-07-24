@@ -63,7 +63,8 @@ public class Item implements Serializable {
     private Set<ItemImageMeta> itemImageMeta;
     
     @ManyToOne
-    @JsonBackReference
+   // @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "category" , nullable = false,unique = false)
     private ItemCategory itemCategory;
     

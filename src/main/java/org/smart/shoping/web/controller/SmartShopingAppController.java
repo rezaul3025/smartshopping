@@ -19,10 +19,16 @@ public class SmartShopingAppController {
 	{
 		return "index";
 	}*/
-    @RequestMapping(value="/business-item-panel/{id}")
-    public String businessItemPanelInit(Model model, @PathVariable("id") Long id){
+    @RequestMapping(value = "/business-item-panel/{id}")
+    public String businessItemPanelInit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("businessId", id);
-        
+
         return "business/item-panel";
+    }
+
+    @RequestMapping(value = "/item/view/{id}")
+    public String initItemView(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("itemId", id);
+        return "item/view";
     }
 }

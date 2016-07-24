@@ -180,4 +180,9 @@ public class ItemServiceHandler implements ItemService {
     private Pageable createPageRequest(int page, int pageSize) {
         return new PageRequest(page, pageSize, Sort.Direction.ASC, "createdDate");
     }
+
+	@Override
+	public Item getItemDetails(Long id) {
+		return itemRepository.findOne(id);
+	}
 }

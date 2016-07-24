@@ -7,11 +7,11 @@
         <div ng-if="item.content.length &gt; 0" class="col-sm-6 col-md-4" ng-repeat="content in item.content">
             <div class="media">
                 <div class="caption">
-                    <h3>{{content.title}}</h3>
+                    <h4>{{content.title}}</h4>
                     <p>{{content.description}}</p>
                     <img  style="width: 190px; height: 120px;" ng-src="{{content.itemImageMeta[0].webPath}}" alt="{{content.itemImageMeta[0].webPath}}" />
                     <h3><span class="glyphicon glyphicon-euro"></span> {{content.price}}</h3>
-                    <p><a href="#">Details ..</a></p>
+                    <p><a  href="/item/view/{{content.id}}">Details ..</a></p>
                 </div>
             </div>
             <!--div class="media">
