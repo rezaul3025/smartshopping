@@ -50,8 +50,8 @@ public class Item implements Serializable {
     @Column(name = "quantity", length = 10, nullable = true)
     private Integer quantity;
 
-    @Column(name = "category", length = 255, nullable = false)
-    private Category category;
+    //@Column(name = "category", length = 255, nullable = false)
+    //private Category category;
     
     @ManyToOne
     @JsonBackReference
@@ -61,6 +61,11 @@ public class Item implements Serializable {
     @OneToMany(mappedBy = "item")
     @JsonManagedReference
     private Set<ItemImageMeta> itemImageMeta;
+    
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "category" , nullable = false,unique = false)
+    private ItemCategory itemCategory;
     
     public Item(){
         
@@ -134,14 +139,6 @@ public class Item implements Serializable {
         this.quantity = quantity;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public Set<ItemImageMeta> getItemImageMeta() {
         return itemImageMeta;
     }
@@ -160,5 +157,13 @@ public class Item implements Serializable {
 
     public void setBusiness(Business business) {
         this.business = business;
+    }
+
+    public ItemCategory getItemCategory() {
+        return itemCategory;
+    }
+
+    public void setItemCategory(ItemCategory itemCategory) {
+        this.itemCategory = itemCategory;
     }
 }

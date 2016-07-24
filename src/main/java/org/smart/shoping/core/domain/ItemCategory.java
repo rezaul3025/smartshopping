@@ -5,10 +5,13 @@
  */
 package org.smart.shoping.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +29,10 @@ public class ItemCategory implements Serializable{
     
     @Column(name="image_icon", length = 255)
     private String imageIcon;
+    
+    @OneToMany(mappedBy = "itemCategory")
+    @JsonManagedReference
+    private List<Item> items;
 
     public Integer getId() {
         return id;
@@ -49,5 +56,13 @@ public class ItemCategory implements Serializable{
 
     public void setImageIcon(String imageIcon) {
         this.imageIcon = imageIcon;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

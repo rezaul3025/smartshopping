@@ -1,7 +1,7 @@
 <div th:fragment="items">
     <div class="row" ng-repeat="item in items">
         <div ng-if="item.content.length &gt; 0" class="col-sm-12 col-md-12">
-            <h3>{{item.category}}</h3>
+            <h3>{{item.category.name}}</h3>
             <hr/>
         </div>
         <div ng-if="item.content.length &gt; 0" class="col-sm-6 col-md-4" ng-repeat="content in item.content">

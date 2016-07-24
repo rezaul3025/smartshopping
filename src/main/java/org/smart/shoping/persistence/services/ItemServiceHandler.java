@@ -54,13 +54,13 @@ public class ItemServiceHandler implements ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
-    
+
     @Autowired
     private BusinessRepository businessRepo;
-    
+
     @Autowired
     private ItemImageMetaRepository itemImageMetaRepository;
-    
+
     @Autowired
     private ItemCategoryRepository itemCategoryRepository;
 
@@ -68,12 +68,12 @@ public class ItemServiceHandler implements ItemService {
     private Environment env;
 
     @Override
-    public Item addShopingItem(Item item,  Long businessId) {
-        
+    public Item addShopingItem(Item item, Long businessId) {
+
         Business business = businessRepo.findOne(businessId);
         item.setBusiness(business);
         item.setCreatedDate(new Date());
-        
+
         return itemRepository.save(item);
     }
 
@@ -122,7 +122,7 @@ public class ItemServiceHandler implements ItemService {
                     }
 
                     ItemImageMeta imageMeta = new ItemImageMeta(null, item, webPath, originalPath, IMAGE_TYPE_ITEM, height, width, file.getSize(), mimeType, filename);
-                   
+
                     itemImageMetaRepository.save(imageMeta);
                 }
             } catch (IOException e) {
@@ -133,41 +133,42 @@ public class ItemServiceHandler implements ItemService {
         //item.setItemImageMeta(itemImageMetaList);
         //itemRepository.save(item);
     }
-    
+
     @Override
-    public List<String> getItemCategory(){
+    public List<String> getItemCategory() {
         List<String> categoryList = new ArrayList<String>();
-        
-        for(ItemCategory category :itemCategoryRepository.findAll()){
+
+        for (ItemCategory category : itemCategoryRepository.findAll()) {
             categoryList.add(category.getName());
         }
-            
+
         return categoryList;
     }
 
+    /**
+     *
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @Override
     public List<ItemInfo> getItemByCategory(int page, int pageSize) {
-      
+
         List<ItemInfo> itemInfoList = new ArrayList<ItemInfo>();
-        
+
         Pageable pageRequest = createPageRequest(page, pageSize);
-        
-        Business b = new Business();
-        b.setId(1L);
-        Page<Item> items1 = itemRepository.findByBusiness(b,pageRequest);
-        
-        
-        List<Category> categoryList = Arrays.asList(Category.values());
-        
-        for(Category category : categoryList){
-            Page<Item> items = itemRepository.findByCategory(category, pageRequest);
-            itemInfoList.add(new ItemInfo(category,items.getContent(),items.getTotalElements()));
+
+        List<ItemCategory> categoryList = itemCategoryRepository.findAll();
+
+        for (ItemCategory category : categoryList) {
+            Page<Item> items = itemRepository.findByItemCategory(category, pageRequest);
+            itemInfoList.add(new ItemInfo(category, items.getContent(), items.getTotalElements()));
         }
-        
-        return  itemInfoList;
+
+        return itemInfoList;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     private Pageable createPageRequest(int page, int pageSize) {
         return new PageRequest(page, pageSize, Sort.Direction.ASC, "createdDate");
     }

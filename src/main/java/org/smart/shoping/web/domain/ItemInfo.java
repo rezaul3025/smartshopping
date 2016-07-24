@@ -7,8 +7,8 @@ package org.smart.shoping.web.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.smart.shoping.core.domain.Category;
 import org.smart.shoping.core.domain.Item;
+import org.smart.shoping.core.domain.ItemCategory;
 
 /**
  *
@@ -16,11 +16,11 @@ import org.smart.shoping.core.domain.Item;
  */
 public class ItemInfo {
     
-    private Category category;
+    private ItemCategory category;
     private List<Item> content=new ArrayList<Item>();
     private  Long totalItem;
     
-    public ItemInfo(Category category, List<Item> content, Long totalItem)
+    public ItemInfo(ItemCategory category, List<Item> content, Long totalItem)
     {
         this.category = category;
         this.content = content;
@@ -32,16 +32,14 @@ public class ItemInfo {
         
     }
 
-    public Category getCategory() {
+    public ItemCategory getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(ItemCategory category) {
         this.category = category;
     }
     
-    
-
     public List<Item> getContent() {
         return content;
     }
@@ -57,6 +55,4 @@ public class ItemInfo {
     public void setTotalItem(Long totalItem) {
         this.totalItem = totalItem;
     }
-    
-    
 }
