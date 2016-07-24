@@ -29,6 +29,7 @@ import org.smart.shoping.persistence.repositories.BusinessRepository;
 import org.smart.shoping.persistence.repositories.ItemCategoryRepository;
 import org.smart.shoping.persistence.repositories.ItemImageMetaRepository;
 import org.smart.shoping.persistence.repositories.ItemRepository;
+import org.smart.shoping.web.domain.ItemForm;
 import org.smart.shoping.web.domain.ItemInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -68,10 +69,17 @@ public class ItemServiceHandler implements ItemService {
     private Environment env;
 
     @Override
-    public Item addShopingItem(Item item, Long businessId) {
+    public Item addShopingItem(ItemForm itemForm, Long businessId) {
 
+    	Item item = new Item(itemForm.getTitle(), itemForm.getDescription(), null, itemForm.getOffer(), itemForm.getPrice(),itemForm.getOfferPrice(), itemForm.getQuantity());
+    	
         Business business = businessRepo.findOne(businessId);
         item.setBusiness(business);
+        
+        ItemCategory itemCategory = itemCategoryRepository.findByName(itemForm.getCategory());
+        
+        item.setItemCategory(itemCategory);
+        
         item.setCreatedDate(new Date());
 
         return itemRepository.save(item);

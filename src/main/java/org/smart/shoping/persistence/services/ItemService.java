@@ -8,6 +8,7 @@ package org.smart.shoping.persistence.services;
 import java.util.List;
 import org.smart.shoping.core.domain.Item;
 import org.smart.shoping.core.domain.ItemCategory;
+import org.smart.shoping.web.domain.ItemForm;
 import org.smart.shoping.web.domain.ItemInfo;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -17,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  */
 public interface ItemService {
     
-    Item addShopingItem(Item item, Long businessId);
+    Item addShopingItem(ItemForm itemForm, Long businessId);
     
     void addItemImage(MultipartHttpServletRequest request, Long id);
     

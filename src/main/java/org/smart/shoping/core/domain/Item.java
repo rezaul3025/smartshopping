@@ -71,6 +71,16 @@ public class Item implements Serializable {
         
     }
     
+    public Item(String title, String description, Date createdDate, Boolean offer, Float price, Float offerPrice, Integer quantity){
+        this.title = title;
+        this.description = description;
+        this.createdDate = createdDate;
+        this.offer = offer;
+        this.price = price;
+        this.offerPrice = offerPrice;
+        this.quantity = quantity;
+    }
+    
     public Item(Long id){
         this.id = id;
     }

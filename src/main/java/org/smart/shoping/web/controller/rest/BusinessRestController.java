@@ -1,14 +1,13 @@
 package org.smart.shoping.web.controller.rest;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.smart.shoping.core.domain.Business;
 import org.smart.shoping.core.domain.BusinessImageMeta;
-import org.smart.shoping.core.domain.Category;
 import org.smart.shoping.core.domain.Item;
 import org.smart.shoping.persistence.services.BusinessService;
 import org.smart.shoping.persistence.services.ItemService;
+import org.smart.shoping.web.domain.ItemForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -52,8 +51,8 @@ public class BusinessRestController {
     }
 
     @RequestMapping(value = "/item/{businessId}", method = RequestMethod.POST)
-    public Item addItem(@RequestBody Item item, @PathVariable("businessId") Long businessId){
-        return itemService.addShopingItem(item, businessId);
+    public Item addItem(@RequestBody ItemForm itemForm, @PathVariable("businessId") Long businessId){
+        return itemService.addShopingItem(itemForm, businessId);
     }
     
     @RequestMapping(value = "/item/image/{id}", method = RequestMethod.POST)
