@@ -5,8 +5,8 @@
  */
 package org.smart.shoping.web.controller.rest;
 
-import org.smart.shoping.core.domain.Business;
 import org.smart.shoping.persistence.services.BusinessService;
+import org.smart.shoping.web.domain.BusinessForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +27,9 @@ public class SignupController {
     private BusinessService businessService;
 
     @RequestMapping(value = "/business", method = RequestMethod.POST)
-    public Long signUp(@RequestBody Business business) {
+    public Long signUp(@RequestBody BusinessForm businessForm) {
         //executor.execute(longRunningService);
-        return businessService.addBusiness(business).getId();
+        return businessService.addBusiness(businessForm).getId();
     }
 
     @RequestMapping(value = "/business/image/{id}", method = RequestMethod.POST)

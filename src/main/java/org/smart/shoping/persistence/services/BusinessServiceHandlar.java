@@ -19,6 +19,7 @@ import org.smart.shoping.core.domain.User;
 import org.smart.shoping.persistence.repositories.BusinessImageMetaRepository;
 import org.smart.shoping.persistence.repositories.BusinessRepository;
 import org.smart.shoping.persistence.repositories.UserRepository;
+import org.smart.shoping.web.domain.BusinessForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
@@ -50,7 +51,12 @@ public class BusinessServiceHandlar implements BusinessService {
     private Environment env;
 
     @Override
-    public Business addBusiness(Business business) {
+    public Business addBusiness(BusinessForm businessForm) {
+    	
+    	Business business = new Business(businessForm.getId(), businessForm.getTitle(), businessForm.getSubTitle(), businessForm.getDescription(), 
+    			businessForm.getStreetNameAndNo(), businessForm.getLocation(), businessForm.getFloorNo(),businessForm.getShopNo(), businessForm.getPostCode(),
+    			businessForm.getCity(),businessForm.getCountry(),businessForm.getEmail(),businessForm.getPhone(), businessForm.getPassword());
+    	
         business = businessRepo.save(business);
         System.out.println("Business deatils : @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ :"+business);
         userRepository.save(new User(business.getId(), business.getTitle(), business.getEmail(), business.getPassword(), Role.BUSINESS));

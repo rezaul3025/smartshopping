@@ -73,6 +73,27 @@ public class Business implements Serializable {
     private List<BusinessImageMeta> businessImageMeta;
     
 
+    
+    public Business(Long id, String title, String subTitle, String description, String streetNameAndNo,
+    		String location, Integer floorNo,Integer shopNo, Integer postCode, String city,String country,
+    		String email,String phone, String password){
+    	this.id = id;
+    	this.title = title;
+    	this.subTitle = subTitle;
+    	this.description = description;
+    	this.streetNameAndNo = streetNameAndNo;
+    	this.location = location;
+    	this.floorNo = floorNo;
+    	this.shopNo = shopNo;
+    	this.postCode = postCode;
+    	this.city = city;
+    	this.country = country;
+    	this.email = email;
+    	this.phone = phone;
+    	this.password = password;
+    }
+    
+    
     public Business() {
 
     }
