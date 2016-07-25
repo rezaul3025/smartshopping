@@ -18,18 +18,18 @@ and open the template in the editor.
         <div layout:fragment="content" ng-controller="ItemController" th:attr="ng-init='init('+${itemId}+')'">
             {{item}}
 
-            <div data-example-id="simple-carousel" class="bs-example"> 
+            <!-- <div data-example-id="simple-carousel" class="bs-example"> 
                 <div data-ride="carousel" class="carousel slide" id="carousel-example-generic"> 
                     <ol> 
-                        <!--li class="active" data-slide-to="0" data-target="#carousel-example-generic"></li> 
+                        li class="active" data-slide-to="0" data-target="#carousel-example-generic"></li> 
                         <li data-slide-to="1" data-target="#carousel-example-generic" class=""></li> 
-                        <li data-slide-to="2" data-target="#carousel-example-generic" class=""></li--> 
-                        <!-- <li ng-repeat="image in item.itemImageMeta" data-slide-to="{{$index}}" class="{{$index==0?'active':''}}" data-target="#carousel-example-generic">
+                        <li data-slide-to="2" data-target="#carousel-example-generic" class=""></li 
+                        <li ng-repeat="image in item.itemImageMeta" data-slide-to="{{$index}}" class="{{$index==0?'active':''}}" data-target="#carousel-example-generic">
                             <img alt="img" src="{{image.webPath}}" width="100" height="100"/>
-                        </li> -->
+                        </li>
                     </ol> 
                     <div role="listbox" class="carousel-inner"> 
-                        <!--div class="item next left"> 
+                        div class="item next left"> 
                             <img alt="First slide [900x500]" data-src="holder.js/900x500/auto/#777:#555/text:First slide" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzkwMHg1MDAvYXV0by8jNzc3OiM1NTUvdGV4dDpGaXJzdCBzbGlkZQpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NjFjOGQzZjBiIHRleHQgeyBmaWxsOiM1NTU7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU2MWM4ZDNmMGIiPjxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjNzc3Ii8+PGc+PHRleHQgeD0iMzA3LjgwMDAwMzA1MTc1NzgiIHk9IjI3MC4yNSI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true"/> 
                         </div> 
                         <div class="item"> 
@@ -37,7 +37,7 @@ and open the template in the editor.
                         </div> 
                         <div class="item active left"> 
                             <img alt="Third slide [900x500]" data-src="holder.js/900x500/auto/#555:#333/text:Third slide" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzkwMHg1MDAvYXV0by8jNTU1OiMzMzMvdGV4dDpUaGlyZCBzbGlkZQpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NjFjOGQyOTI4IHRleHQgeyBmaWxsOiMzMzM7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU2MWM4ZDI5MjgiPjxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjNTU1Ii8+PGc+PHRleHQgeD0iMjk3LjgyNDk5Njk0ODI0MjIiIHk9IjI3MC4yNSI+VGhpcmQgc2xpZGU8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true"/> 
-                        </div --> 
+                        </div 
                         <div ng-repeat="image in item.itemImageMeta" class="item {{getItemImageCarouselClass(item,$index)}}">
                             <a href="#"> <img alt="img" src="{{image.webPath}}" data-holder-rendered="true" width="200" height="200" /></a>
                         </div>
@@ -51,6 +51,25 @@ and open the template in the editor.
                         <span class="sr-only">Next</span> 
                     </a> 
                 </div> 
+            </div> -->
+            <div class="row">
+	            <div class="col-sm-2 col-md-2">
+	            	<ul class="list-group">
+	            		<li>
+	            			<h1><span class="glyphicon glyphicon-chevron-up"></span></h1>
+	            		</li>
+	            		<li ng-repeat="image in item.itemImageMeta" style="list-style:outside none none">
+	            			<p>
+	            				<a href="#" stlye="margin-top:2px;"> 
+	            					<img alt="img" src="{{image.webPath}}"  style="width:110px;height:100px;display: block;" />
+	            				</a>
+	            			</p>
+	            		</li>
+	            		<li>
+	            			<h1><span class="glyphicon glyphicon-chevron-down"></span></h1>
+	            		</li>
+	            	</ul>
+	            </div>
             </div>
         </div>
     </body>
