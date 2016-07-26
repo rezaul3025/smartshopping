@@ -266,9 +266,9 @@ and open the template in the editor.
 				            		</li>
 			            		</ul> -->
 			            		
-			            		<table>
+			            		<table class="table" style="width:110px;">
 			            			<tr ng-repeat="image in itemImageMeta track by $index">
-			            				<td style="border: 0 ;" align="center">
+			            				<td style="border: 0;width: 210px" align="center">
 			            					<a ng-if="$index==0" style="{{deActivePre?'pointer-events: none;cursor: default;color: #777;':''}}font-size:x-large" href="#" ng-click="handleItemGalaryPre()"><span class="glyphicon glyphicon-chevron-up"></span></a>
 			            					<a href="#" stlye="margin-top:2px;" ng-mouseover="showFullImage(image.webPath)"> 
 				            					<img alt="img" src="{{image.webPath}}" class="img-thumbnail" style="width:110px;height:100px;display: block;animation-delay: 2s;" />
