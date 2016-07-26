@@ -42,4 +42,3 @@ shSmartShoppingApp.controller('ItemController', ['$http', '$scope', '$rootScope'
         var controller = {};
         return controller;
     }]);
-
