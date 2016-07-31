@@ -183,11 +183,12 @@ and open the template in the editor.
        
     </style>
     </head>
-    <body>
+    <body ng-controller="ItemController" th:attr="ng-init='init('+${itemId}+')'">
         <div layout:fragment="sidebar">
             <div th:replace="fragments/sidebar :: sidebar"></div>
+            {{item.title}}
         </div>
-        <div layout:fragment="content" ng-controller="ItemController" th:attr="ng-init='init('+${itemId}+')'">
+        <div layout:fragment="content">
            
 
             <!-- <div data-example-id="simple-carousel" class="bs-example"> 
@@ -250,11 +251,16 @@ and open the template in the editor.
 	            	<img alt="img" src="{{imageFullView.length > 0 ?imageFullView:itemImageMeta[0].webPath }}" style="transition:transform 10s ease-in-out;" class="img-responsive" />
 	            </div>
             </div> -->
+            	<div class="page-header">
+  					<h1>{{item.title}} <small>{{item.subtitle}}</small></h1>
+				</div>
+				<p>{{item.description}}</p>
+				<br/>
 	            <div>
 		            <table class="table">
 		            	
 		            	<tr>
-		            		<td  style="border: 0 ;">
+		            		<td   style="border: 0;">
 		            			
 		            			<!-- <ul>
 				            		<li ng-repeat="image in itemImageMeta track by $index" style="list-style:outside none none">
@@ -271,16 +277,15 @@ and open the template in the editor.
 			            				<td style="border: 0;width: 210px" align="center">
 			            					<a ng-if="$index==0" style="{{deActivePre?'pointer-events: none;cursor: default;color: #777;':''}}font-size:x-large" href="#" ng-click="handleItemGalaryPre()"><span class="glyphicon glyphicon-chevron-up"></span></a>
 			            					<a href="#" stlye="margin-top:2px;" ng-mouseover="showFullImage(image.webPath)"> 
-				            					<img alt="img" src="{{image.webPath}}" class="img-thumbnail" style="width:110px;height:100px;display: block;animation-delay: 2s;" />
+				            					<img alt="img" src="{{image.webPath}}" class="img-thumbnail" style="width:100px;height:80px;display: block;animation-delay: 2s;" />
 				            				</a>
 				            				<a ng-if="$index==itemImageMeta.length-1" style="{{deActiveNext?'pointer-events: none;cursor: default;color: #777;':''}}font-size:x-large" href="#" ng-click="handleItemGalaryNext()"><span class="glyphicon glyphicon-chevron-down"></span></a>
 				            			</td>
 			            			</tr>
 			            		</table>
 		            		</td>
-		            		<td class="col-sm-11" style="border: 1px solid #ddd;">
-		            			<img alt="img" src="{{imageFullView.length > 0 ?imageFullView:itemImageMeta[0].webPath }}" class="img-responsive" />
-			            
+		            		<td class="col-sm-11" style="border: 1px solid #ddd;vertical-align: middle;">
+		            			<img alt="img" src="{{imageFullView.length > 0 ?imageFullView:itemImageMeta[0].webPath }}" />
 		            		</td>
 		            	</tr>
 		            </table>
