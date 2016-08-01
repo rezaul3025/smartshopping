@@ -1,7 +1,7 @@
 <div th:fragment="items">
     <div class="row" ng-repeat="item in items">
         <div ng-if="item.content.length &gt; 0" class="col-sm-12 col-md-12">
-            <h3>{{item.category.name}}</h3>
+            <h3><span class="glyphicon glyphicon-th-large"></span> {{item.category.name}}</h3>
             <hr/>
         </div>
         <div ng-if="item.content.length &gt; 0" class="col-sm-6 col-md-4" ng-repeat="content in item.content">
@@ -14,19 +14,6 @@
                     <p><a  href="/item/view/{{content.id}}">Details ..</a></p>
                 </div>
             </div>
-            <!--div class="media">
-                <div class="media-left media-middle">
-                    <a href="#">
-                        <img  style="width: 190px; height: 120px;" ng-src="{{item.itemImageMeta[0].webPath}}" alt="{{item.itemImageMeta[0].webPath}}" />
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">{{item.title}}</h4>
-                    <p>{{item.description}}</p>
-                    <h3><span class="glyphicon glyphicon-euro"></span> {{item.price}}</h3>
-                    <p><a href="#">Details ..</a></p>
-                </div>
-            </div-->
         </div>  
     </div>
     <!--/row-->
