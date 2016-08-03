@@ -90,6 +90,43 @@ shSmartShoppingApp.directive('shTextArea', function () {
     };
 });
 
+shSmartShoppingApp.directive('shCkEditor', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: function (element, attrs) {
+            var form = sh.getProperty(attrs, "shForm", "textAreaFieldForm");
+            var field = sh.getProperty(attrs, "shField", "textField");
+            var errors = sh.getProperty(attrs, "shErrorMessages", "textAreaFieldMessages");
+            var placeHolder = sh.getProperty(attrs, "shPlaceholder", "textAreaFieldPlaceholder");
+            return shDirective.inputAreaFieldTemplate(form, field, errors, "sh-ck=''", placeHolder, element);
+        }
+    };
+});
+shSmartShoppingApp.directive('shCk', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attrs, ngModel) {
+        	var ck = CKEDITOR.replace(element[0],{toolbar : 'Basic'});
+
+            if (!ngModel){
+            	return;
+            }
+
+            ck.on('pasteState', function() {
+              scope.$apply(function() {
+                ngModel.$setViewValue(ck.getData());
+              });
+            });
+
+            ngModel.$render = function(value) {
+              ck.setData(ngModel.$viewValue);
+            };
+        }
+    };
+});
+
 shSmartShoppingApp.directive('shSearchField', function () {
     return {
         restrict: 'E',
