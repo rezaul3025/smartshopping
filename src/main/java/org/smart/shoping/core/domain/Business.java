@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "business")
@@ -65,7 +66,7 @@ public class Business implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "business")
-    @JsonManagedReference
+    @JsonBackReference
     private List<Item> items;
     
     @OneToMany(mappedBy = "business")

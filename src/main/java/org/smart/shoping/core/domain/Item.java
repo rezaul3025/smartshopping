@@ -57,7 +57,7 @@ public class Item implements Serializable {
     //private Category category;
     
     @ManyToOne
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "owner_id" , nullable = false,unique = false)
     private Business business;
 

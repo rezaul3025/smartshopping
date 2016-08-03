@@ -49,6 +49,8 @@ and open the template in the editor.
 						</td>
 					</tr>
 				</table>
+				
+				
 			</div>
 			<div class="col-xs-5 col-sm-5">
 				<h1>{{item.title}}</h1>
@@ -58,25 +60,24 @@ and open the template in the editor.
 						<h4>Price : <span class="glyphicon glyphicon-eur"></span> <span style="{{item.offer?'text-decoration: line-through;':''}}">{{item.price}}</span></h4>
 					</div>
 					<div class="col-xs-6 col-sm-6">
-						<h4 ng-if="item.offer">Now : <span class="glyphicon glyphicon-eur"></span> {{item.price}}</h4>
+						<h4 ng-if="item.offer">Now : <span class="glyphicon glyphicon-eur"></span> {{item.offerPrice}}</h4>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6 col-sm-6">
-						<a href="#" class="btn btn-primary">Contact seller to buy</a>
+					<div class="col-xs-12 col-sm-12">
+						<button href="#" class="btn btn-primary">Contact seller to buy</button>
+						<button href="#" class="btn btn-primary">Buy from amazon</button>
+			
 					</div>
-					<div class="col-xs-6 col-sm-6">
-						<a href="#" class="btn btn-primary">Buy from amazon</a>
-					</div>
+					
 				</div>
 				<br/>
-				<div class="row">
-					<div class="col-xs-6 col-sm-6">
-						<a href="#" >View more features ..</a>
-					</div>
-					<div class="col-xs-6 col-sm-6">
-					</div>
-				</div>
+				<div data-role="dialog" id="dialog-place-center-right" class="padding20" data-close-button="true" data-place="center-right">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed center-right
+                </p>
+            </div>
 				<div class="row">
 					<div class="col-xs-12 col-sm-12">
 						<div ng-bind-html="getTrustAsHtml(item.detailsDescription)"></div>
