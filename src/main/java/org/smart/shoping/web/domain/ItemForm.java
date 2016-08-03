@@ -1,7 +1,5 @@
 package org.smart.shoping.web.domain;
 
-import java.util.Date;
-
 public class ItemForm {
 
 	private Long id;
@@ -9,6 +7,8 @@ public class ItemForm {
     private String title;
 
     private String description;
+    
+    private String detailsDescription;
 
     private Boolean offer;
 
@@ -42,6 +42,14 @@ public class ItemForm {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getDetailsDescription() {
+		return detailsDescription;
+	}
+
+	public void setDetailsDescription(String detailsDescription) {
+		this.detailsDescription = detailsDescription;
 	}
 
 	public Boolean getOffer() {

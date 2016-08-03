@@ -21,7 +21,7 @@ and open the template in the editor.
 <body ng-controller="ItemController" th:attr="ng-init='init('+${itemId}+')'">
 	<div layout:fragment="content">
 		<div class="row">
-			<div class="col-xs-12 col-sm-7">
+			<div class="col-xs-7 col-sm-7">
 				<table class="table">
 					<tr>
 						<td style="border: 0;" align="left">
@@ -43,39 +43,43 @@ and open the template in the editor.
 								</tr>
 							</table>
 						</td>
-						<td class="col-sm-11"
-							style="border: 1px solid #ddd; vertical-align: middle;"><img
-							alt="img"
-							src="{{imageFullView.length > 0 ?imageFullView:itemImageMeta[0].webPath }}" />
+						<td
+							style="border: 1px solid #ddd; vertical-align: middle;">
+							<img class="col-sm-12" alt="img" src="{{imageFullView.length > 0 ?imageFullView:itemImageMeta[0].webPath }}" />
 						</td>
 					</tr>
 				</table>
 			</div>
-			<div class="col-xs-6 col-sm-5 sidebar-offcanvas" id="sidebar">
+			<div class="col-xs-5 col-sm-5">
 				<h1>{{item.title}}</h1>
 				<p>{{item.description}} </p>
 				<div class="row">
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-xs-6 col-sm-6">
 						<h4>Price : <span class="glyphicon glyphicon-eur"></span> <span style="{{item.offer?'text-decoration: line-through;':''}}">{{item.price}}</span></h4>
 					</div>
-					<div class="col-xs-5 col-sm-5">
+					<div class="col-xs-6 col-sm-6">
 						<h4 ng-if="item.offer">Now : <span class="glyphicon glyphicon-eur"></span> {{item.price}}</h4>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-xs-6 col-sm-6">
 						<a href="#" class="btn btn-primary">Contact seller to buy</a>
 					</div>
-					<div class="col-xs-5 col-sm-5">
+					<div class="col-xs-6 col-sm-6">
 						<a href="#" class="btn btn-primary">Buy from amazon</a>
 					</div>
 				</div>
 				<br/>
 				<div class="row">
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-xs-6 col-sm-6">
 						<a href="#" >View more features ..</a>
 					</div>
-					<div class="col-xs-5 col-sm-5">
+					<div class="col-xs-6 col-sm-6">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12">
+						<div ng-bind-html="getTrustAsHtml(item.detailsDescription)"></div>
 					</div>
 				</div>
 			</div>

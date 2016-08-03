@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-shSmartShoppingApp.controller('ItemController', ['$http', '$scope', '$rootScope', '$controller', function LoginController($http, $scope, $rootScope, $controller) {
+shSmartShoppingApp.controller('ItemController', ['$http', '$scope', '$rootScope', '$controller','$sce', function LoginController($http, $scope, $rootScope, $controller, $sce) {
         $controller('CoreController', {
             $scope: $scope
         });
@@ -16,9 +16,9 @@ shSmartShoppingApp.controller('ItemController', ['$http', '$scope', '$rootScope'
            var url = "/rest/item/"+itemId;
             $http.get(url).success(function (data, status, headers) {
                 $scope.item = data;
-                if($scope.item.itemImageMeta.length > 5){
+                if($scope.item.itemImageMeta.length > 4){
 	                for(imageMeta in $scope.item.itemImageMeta){
-	                	 if(imageMeta < 5){
+	                	 if(imageMeta < 4){
 	                		 $scope.itemImageMeta.push($scope.item.itemImageMeta[imageMeta]);
 	                	 }
 	                }
@@ -52,7 +52,7 @@ shSmartShoppingApp.controller('ItemController', ['$http', '$scope', '$rootScope'
         };
         
         $scope.imageGlow =0;
-        $scope.imageGhigh = 4;
+        $scope.imageGhigh = 3;
         
         $scope.handleItemGalaryNext = function(){
         	
@@ -89,11 +89,20 @@ shSmartShoppingApp.controller('ItemController', ['$http', '$scope', '$rootScope'
             	}
         	}
         	
-        }
+        };
         
         $scope.showFullImage = function(imagePath){
         	$scope.imageFullView = imagePath;
-        }
+        };
+        
+        $scope.getTrustAsHtml = function(text){
+        	
+        	if(text != null && typeof text != 'undefined'){
+        		return $sce.trustAsHtml(text);
+        	}
+        	
+        	return text;
+        };
 
         var controller = {};
         return controller;

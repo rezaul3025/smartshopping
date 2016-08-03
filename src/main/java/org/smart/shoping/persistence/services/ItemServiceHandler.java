@@ -71,7 +71,7 @@ public class ItemServiceHandler implements ItemService {
     @Override
     public Item addShopingItem(ItemForm itemForm, Long businessId) {
 
-    	Item item = new Item(itemForm.getTitle(), itemForm.getDescription(), null, itemForm.getOffer(), itemForm.getPrice(),itemForm.getOfferPrice(), itemForm.getQuantity());
+    	Item item = new Item(itemForm.getTitle(), itemForm.getDescription(), itemForm.getDetailsDescription(), null, itemForm.getOffer(), itemForm.getPrice(),itemForm.getOfferPrice(), itemForm.getQuantity());
     	
         Business business = businessRepo.findOne(businessId);
         item.setBusiness(business);

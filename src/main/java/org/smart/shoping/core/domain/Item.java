@@ -34,6 +34,9 @@ public class Item implements Serializable {
 
     @Column(name = "description", length = Integer.MAX_VALUE, nullable = false)
     private String description;
+    
+    @Column(name="details_description", length = Integer.MAX_VALUE, nullable = true)
+    private String detailsDescription;
 
     @Column(name = "created_date", length = 6, nullable = false)
     private Date createdDate;
@@ -72,9 +75,10 @@ public class Item implements Serializable {
         
     }
     
-    public Item(String title, String description, Date createdDate, Boolean offer, Float price, Float offerPrice, Integer quantity){
+    public Item(String title, String description, String detailsDescription, Date createdDate, Boolean offer, Float price, Float offerPrice, Integer quantity){
         this.title = title;
         this.description = description;
+        this.detailsDescription = detailsDescription;
         this.createdDate = createdDate;
         this.offer = offer;
         this.price = price;
@@ -110,7 +114,15 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public Date getCreatedDate() {
+    public String getDetailsDescription() {
+		return detailsDescription;
+	}
+
+	public void setDetailsDescription(String detailsDescription) {
+		this.detailsDescription = detailsDescription;
+	}
+
+	public Date getCreatedDate() {
         return createdDate;
     }
 
