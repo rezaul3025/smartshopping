@@ -79,7 +79,24 @@ and open the template in the editor.
 					</div>
 				</div>
 			</div>
-			<!--/.sidebar-offcanvas-->
+		</div>
+		<div style="margin-top:20px">
+		<h3>Seller details</h3>
+		<hr/>
+			<div class="media"> 
+				<div class="media-left"> 
+					<a href="#"> 
+						<img  src="{{item.business.businessImageMeta[0].webPath}}" class="media-object" alt="64x64" style="width: 64px; height: 64px;"  /> 
+					</a> 
+				</div> 
+				<div class="media-body"> 
+					<h4 class="media-heading"><a href="#">{{item.business.title}}</a></h4> 
+					<address>
+						Shop No. {{item.business.shopNo}}<br/>
+						Floor No. {{item.business.floorNo}} <br/>
+					</address>
+				</div> 
+			</div>
 		</div>
 	</div>
 </body>
